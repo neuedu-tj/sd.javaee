@@ -7,12 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>index page</title>
+<title>add moments page</title>
 </head>
 <body>
 
-	<h3>首页</h3>
-	
 	<c:if test="${user != null}">
 		<p>欢迎您 , ${user.uname}</p>
 	</c:if>   
@@ -23,10 +21,15 @@
 	
 	<hr>
 	
+	<h4 align="center">添加朋友圈</h4>
 	
-	<a href="<c:url value="/addMoments.jsp"/>">添加朋友圈</a>
+	<form action="<c:url value="/moments" />" method="post" enctype="multipart/form-data">
+		
+			<input type="text" name="mcontent"><br>
+			<input type="file" name="imgs" /><br>
+		
+			<input type="submit" value="发送" />
+	</form>
 
-	
-	
 </body>
 </html>
