@@ -26,7 +26,7 @@
 	<form action="<c:url value="/moments" />" method="post" enctype="multipart/form-data">
 		
 			<input type="text" name="mcontent"><br>
-			<input type="file" name="imgs" /><br>
+			<input type="file" name="imgs" multiple="multiple" /><br>
 		
 			<input type="submit" value="发送" />
 	</form>

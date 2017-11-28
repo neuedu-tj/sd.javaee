@@ -71,7 +71,7 @@ public class JDBCUtils {
 		return rs;
 	}
 	
-	//适用于 表结构和模型结构一样的查询
+	//适用于 表结构和模型结构一样的查询   ( 单表查询 )
 	public List<?> findByType(String sql, Class clazz , Object... params) {
 		
 		

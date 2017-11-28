@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import com.model.Moments;
 
 import jdbc.config.JDBCUtils;
@@ -15,6 +17,14 @@ public class MomentsDao {
 		int row = util.executeUpdate(sql, params);
 		System.out.println(row + " 条 朋友圈 添加成功 . ");
 		
+	}
+	
+	public List<Moments> getMoments() {
+		String sql = "select * from moments";
+		
+		JDBCUtils util = new JDBCUtils();
+		List<Moments> moments = (List<Moments>) util.findByType(sql, Moments.class , null);
+		return moments;
 	}
 
 }

@@ -15,6 +15,10 @@ public class Moments {
 	public Moments(String mcontent) {
 		this.mcontent = mcontent;
 	}
+	
+	public Moments() {
+	}
+	
 
 	public int getMid() {
 		return mid;

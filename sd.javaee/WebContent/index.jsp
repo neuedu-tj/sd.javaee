@@ -24,7 +24,9 @@
 	<hr>
 	
 	
-	<a href="<c:url value="/addMoments.jsp"/>">添加朋友圈</a>
+	<a href="<c:url value="/addMoments.jsp"/>">添加朋友圈</a><br>
+	
+	<a href="<c:url value="/getMoments"/>">显示朋友圈</a>
 
 	
 	
