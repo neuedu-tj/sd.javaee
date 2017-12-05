@@ -2,6 +2,7 @@ package com.servlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -27,27 +28,36 @@ public class MomentsServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		//接收 朋友圈内容  和  图片
-		
 		String mcontent = request.getParameter("mcontent");
-		Part imgs = request.getPart("imgs");
 		
-		//生成文件保存的真实路径 . . . 
+		//获取单文件
+//		request.getPart("xxxx"); 
 		
 		
-		String url = "/sd.javaee/storage/"+imgs.getSubmittedFileName();
+		Collection<Part> imgs = request.getParts();  //会得到本次提交的表单中  所有控件的内容 , 包括文本  , checkbox , file ......
 		
-		Moments m = new Moments(mcontent , url);
+		//用于拼接 路径
+		StringBuilder urls = new StringBuilder("");
 		
+		for (Part part : imgs) {
+			if("imgs".equalsIgnoreCase(part.getName())) {
+				
+				String path = request.getRealPath("storage") + "/" + part.getSubmittedFileName();   //c:/dev/.....tomcat/webapps/sd.javaee/storage/xxxx.jpg
+				
+				FileUtils.copyInputStreamToFile(part.getInputStream() , new File(path)); //拷贝每一份文件 到服务器
+				
+				String url = "/sd.javaee/storage/"+part.getSubmittedFileName();  // 获取每一份文件的相对路径 (此路径用于保存到 db ) :   sd.javaee/storage/xxx.jpg
+				urls.append(url).append(";");
+			}
+		}
+		
+		urls.deleteCharAt(urls.length()-1); //删除最后一个多余的分号  " ; "
+	
+		Moments m = new Moments(mcontent , urls.toString());
+	
 		MomentsDao dao = new MomentsDao();
 		dao.saveMoments(m);
-		
-		
-		String path = request.getRealPath("storage") + "/" + imgs.getSubmittedFileName();
-		
-		FileUtils.copyInputStreamToFile(imgs.getInputStream() , new File(path));
-		
-		//都添加成功后 , 去哪 ?  ---> 去显示界面
+
 		request.getRequestDispatcher("/getMoments").forward(request, response);
 		
 	}

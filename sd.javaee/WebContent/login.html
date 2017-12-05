@@ -8,12 +8,52 @@
 
 
 	<form action="/sd.javaee/UsersServlet" method="post">
-		Uname : <input name="uname"><br>
-		Pwd : <input name="pwd" /><br>
-		
-		<input type="submit" value="Login" />
-		
+		Uname : <input id="uname" name="uname"><span id="result"></span><br>
+		Pwd : <input name="pwd" /><br> <input type="submit"
+			value="Login" />
+
 	</form>
 
 </body>
 </html>
+
+
+<script>
+	//获取用户填写的姓名
+	var uname = document.getElementById("uname");
+	uname.focus();
+
+	uname.onblur = function() {
+		
+		var url =  'http://localhost:8080/sd.javaee/check?uname='+uname.value;
+		console.log(url)
+
+		//1. 生成 xhr 对象
+		var xhr = new XMLHttpRequest()
+		//2. 指定交互路径
+		xhr.open('get', url , true);
+		//3. 指定回调函数 , 当你正确的得到服务器的响应和数据后 , 你该做什么.... 
+		xhr.onreadystatechange = function() {
+			
+			var result = document.getElementById("result");
+			
+			if (xhr.status == 200 && xhr.readyState == 4) {
+				
+				var res  = parseInt(xhr.responseText);
+
+				if (res == "1") {
+					result.innerHTML = '您可以使用....'
+				} else {
+					result.innerHTML = '这名字已经用人使用 , 您在换一个吧 .... ....'
+				}
+			} else {
+				var result = document.getElementById("result");
+				result.innerHTML = "loading ....... "
+			}
+		}
+
+		//4. 发送请求;   action  action action 
+		xhr.send();
+
+	}
+</script>

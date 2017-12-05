@@ -31,5 +31,10 @@
 			<input type="submit" value="发送" />
 	</form>
 
+	<hr>
+	
+	<p>H5 FileReader</p>
+
+
 </body>
 </html>
