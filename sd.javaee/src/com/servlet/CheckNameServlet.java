@@ -18,6 +18,7 @@ public class CheckNameServlet extends HttpServlet {
 
 		String uname = request.getParameter("uname");
 		
+		
 		PrintWriter out = response.getWriter();
 		
 		System.out.println("uname : " + uname);
