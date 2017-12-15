@@ -19,6 +19,10 @@ public class MomentsDao {
 		
 	}
 	
+	/**
+	 * 显示朋友圈所有内容
+	 * @return
+	 */
 	public List<Moments> getMoments() {
 		String sql = "select * from moments";
 		

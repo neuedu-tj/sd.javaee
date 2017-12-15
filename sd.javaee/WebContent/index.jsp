@@ -29,6 +29,5 @@
 	<a href="<c:url value="/getMoments"/>">显示朋友圈</a>
 
 	
-	
 </body>
 </html>
