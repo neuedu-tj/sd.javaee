@@ -7,11 +7,13 @@
 <body>
 
 
-	<form action="/sd.javaee/UsersServlet" method="get">
-		Uname : <input id="uname" name="uname"><span id="result"></span><br>
-		Pwd : <input name="pwd" /><br> 
-		<input type="submit"
-			value="Login" />
+	<form action="/sd.javaee/user" method="get">
+		<input type="hidden" name="method" value="login">
+		Uname : 
+		<input id="uname" name="uname"><span id="result"></span><br>
+		Pwd : 
+		<input name="pwd" /><br> 
+		<input type="submit" value="Login" />
 
 	</form>
 
@@ -19,7 +21,11 @@
 </html>
 
 
+
+
 <!--  
+
+
 
 
 <script>
@@ -28,20 +34,21 @@
 	uname.focus();
 
 	uname.onblur = function() {
-		
-		var url =  'http://localhost:8080/sd.javaee/check?uname='+uname.value;
+
+		var url = 'http://localhost:8080/sd.javaee/user?method=check&uname='
+				+ uname.value;
 		//1. 生成 xhr 对象
 		var xhr = new XMLHttpRequest()
 		//2. 指定交互路径
-		xhr.open('get', url , true);
+		xhr.open('get', url, true);
 		//3. 指定回调函数 , 当你正确的得到服务器的响应和数据后 , 你该做什么.... 
 		xhr.onreadystatechange = function() {
-			
+
 			var result = document.getElementById("result");
-			
+
 			if (xhr.status == 200 && xhr.readyState == 4) {
-				
-				var res  = xhr.responseText;
+
+				var res = xhr.responseText;
 
 				if (res == "1") {
 					result.innerHTML = '您可以使用....'
@@ -61,5 +68,5 @@
 	}
 </script>
 
-
  -->
+

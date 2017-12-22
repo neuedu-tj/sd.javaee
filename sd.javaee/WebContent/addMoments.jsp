@@ -24,7 +24,7 @@
 	
 	<h4 align="center">添加朋友圈</h4>
 	
-	<form action="<c:url value="/moments" />" method="post" enctype="multipart/form-data">
+	<form action="<c:url value="/moment?method=add" />" method="post" enctype="multipart/form-data">
 		
 			<input type="text" name="mcontent"><br>
 			<input type="file" name="imgs" multiple="multiple" /><br>
