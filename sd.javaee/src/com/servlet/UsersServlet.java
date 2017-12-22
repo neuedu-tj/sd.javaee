@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +26,19 @@ public class UsersServlet extends HttpServlet {
 			login(request , response);
 		} else if("check".equalsIgnoreCase(method)) {
 			check(request , response);
+		} else if("rememberme".equalsIgnoreCase(method)) {
+			rememberme(request, response) ;
 		}
+	}
+	
+	
+	protected void rememberme(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("cookie");
+		Cookie c = new Cookie("sd" , "1111111");
+		c.setMaxAge(0);
+		response.addCookie(c);
+	
 	}
 	
 	protected void check(HttpServletRequest request, HttpServletResponse response)
@@ -51,6 +64,18 @@ public class UsersServlet extends HttpServlet {
 	
       
 	protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		Cookie[] cookies = request.getCookies();
+		
+		for (Cookie cookie : cookies) {
+			if("sd".equalsIgnoreCase(cookie.getName())) {
+				System.out.println("cookie value : " + cookie.getValue());
+			}
+				
+		}
+		
+		
 		
 		String name = request.getParameter("uname");
 		String pwd = request.getParameter("pwd");
