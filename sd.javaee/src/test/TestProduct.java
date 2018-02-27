@@ -7,6 +7,8 @@ import org.junit.Test;
 import com.dao.ProductDao;
 import com.model.Product;
 
+import web.util.PageBean;
+
 public class TestProduct {
 	
 	@Test
@@ -19,8 +21,21 @@ public class TestProduct {
 		for (Product p : products) {
 			System.out.println(p);
 		}
-		
-		
+
 	}
+	
+	
+	@Test
+	public void testGetProductsByPage() {
+		
+		ProductDao dao = new ProductDao();
+		
+		PageBean page = dao.getProductsByPage(3,3);
+		
+		System.out.println("pageBean : " + page);
+
+	}
+	
+	
 
 }

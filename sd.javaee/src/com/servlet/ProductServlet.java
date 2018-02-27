@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.dao.ProductDao;
 import com.model.Product;
 
+import web.util.PageBean;
+
 @WebServlet("/product")
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,13 +24,27 @@ public class ProductServlet extends HttpServlet {
 
 		if ("getProduct".equalsIgnoreCase(method)) {
 			getProduct(request, response);
+		} else if("getProductByPage".equalsIgnoreCase(method)) {
+			getProductByPage(request , response);
 		}
 
 	}
 
-	/**
-	 * 返回所有的 product 表 记录
-	 */
+	
+	protected void getProductByPage(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		ProductDao dao = new ProductDao();
+		
+		int curr = Integer.parseInt(request.getParameter("curr"));
+
+		PageBean pageBean = dao.getProductsByPage( curr,  3 );
+		
+		request.setAttribute("pageBean", pageBean);
+		
+		request.getRequestDispatcher("/product/getProductByPage.jsp").forward(request, response);
+	}
+	
 	protected void getProduct(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
