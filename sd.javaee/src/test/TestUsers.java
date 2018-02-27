@@ -9,13 +9,14 @@ public class TestUsers {
 	
 	@Test
 	public void testCheckUsers() {
-		
-		
-		
-		Users u = new Users(1, "tom" , "222123");
-		
+
+		Users user = new Users("tom" , "123");
 		
 		UsersDao dao = new UsersDao();
+		
+		Users curr = dao.checkUsers(user);
+		
+		System.out.println(curr);
 //		
 //		boolean flag = dao.checkUsers(u);
 //		System.out.println("有此用户么 ? " + flag);

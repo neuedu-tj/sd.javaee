@@ -65,23 +65,22 @@ public class UsersServlet extends HttpServlet {
       
 	protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		Cookie[] cookies = request.getCookies();
-		
-		for (Cookie cookie : cookies) {
-			if("sd".equalsIgnoreCase(cookie.getName())) {
-				System.out.println("cookie value : " + cookie.getValue());
-			}
-				
-		}
-		
-		
-		
+//		
+//		Cookie[] cookies = request.getCookies();
+//		
+//		for (Cookie cookie : cookies) {
+//			if("sd".equalsIgnoreCase(cookie.getName())) {
+//				System.out.println("cookie value : " + cookie.getValue());
+//			}
+//				
+//		}
+//		
+
 		String name = request.getParameter("uname");
 		String pwd = request.getParameter("pwd");
 		
 		
-		Users u = new Users(1, name , pwd);
+		Users u = new Users(name , pwd);
 		
 		
 		UsersDao dao = new UsersDao();

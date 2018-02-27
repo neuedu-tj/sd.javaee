@@ -8,6 +8,16 @@ public class Users {
 	
 	public Users() {}
 	
+	
+	
+	public Users(String uname, String pwd) {
+		super();
+		this.uname = uname;
+		this.pwd = pwd;
+	}
+
+
+
 	public Users(int uid, String uname, String pwd) {
 		super();
 		this.uid = uid;
@@ -37,6 +47,13 @@ public class Users {
 
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Users [uid=" + uid + ", uname=" + uname + ", pwd=" + pwd + "]";
 	}
 	
 	
