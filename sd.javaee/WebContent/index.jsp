@@ -26,7 +26,9 @@
 	
 	<a href="<c:url value="/addMoments.jsp"/>">添加朋友圈</a><br>
 	
-	<a href="<c:url value="/moment?method=get"/>">显示朋友圈</a>
+	<a href="<c:url value="/moment?method=get"/>">显示朋友圈</a><br><br>
+	
+	<a href="<c:url value='/product?method=getProduct' />">显示所有产品</a>
 
 	
 </body>
