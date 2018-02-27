@@ -7,24 +7,24 @@ import java.sql.ResultSet;
 
 public class TestCase {
 	
-	private static String URL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
-	private static String NAME = "hr";
-	private static String PWD = "oracle";
+	private static String URL = "jdbc:mysql://localhost:3306/sd";
+	private static String NAME = "root";
+	private static String PWD = "root";
 
 	public static void main(String[] args) throws Exception {
 		
-		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(URL, NAME, PWD);
 		
 		
-		String sql = "select * from STU";
+		String sql = "select * from users";
 		
 		PreparedStatement ps = conn.prepareStatement(sql);
 
 		ResultSet rs = ps.executeQuery();
 		
 		while(rs.next()) {
-			System.out.println("id : " + rs.getInt(1) + " \t SName : " + rs.getString(2));
+			System.out.println("uid : " + rs.getInt("uid") + " \t uName : " + rs.getString("uname"));
 		}
 		
 	}
