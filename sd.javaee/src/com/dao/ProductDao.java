@@ -16,8 +16,8 @@ public class ProductDao {
 	//用于保存 product
 	public void addProduct(Product product) {
 		
-		String sql = "insert into product ( name , detail , price ) values ( ? , ? , ? )";
-		Object[] params = { product.getName() , product.getDetail() , product.getPrice() };
+		String sql = "insert into product ( name , detail , price , img ) values ( ? , ? , ? , ? )";
+		Object[] params = { product.getName() , product.getDetail() , product.getPrice() , product.getImg() };
 		
 		int row = utils.executeUpdate(sql, params);
 		

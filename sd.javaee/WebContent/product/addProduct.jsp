@@ -16,11 +16,12 @@
 	
 	<hr>
 	
-	<form action='<c:url value="/product?method=addProduct"  />'  method="post">
+	<form action='<c:url value="/product?method=addProduct"  />'  method="post"  enctype="multipart/form-data">
 	
 		Name : <input name="name"/> <br>
 		Detail : <input name="detail" /> <br>
 		Price : <input name="price" /> <br>
+		img : <input type="file"  name="img" multiple="multiple"  /> <br>
 	
 		<input type="submit" value="提交" />
 	

@@ -22,13 +22,14 @@
 		</c:forEach>
 		
 		
-		<table border="1"  align="center" width="50%">
+		<table border="1"  align="center" width="80%">
 			<tr>
 				<td>No</td>
 				<td>Name</td>
 				<td>detail</td>
 				<td>price</td>
 				<td>img</td>
+				<td></td>
 			</tr>
 			
 			<c:forEach var="p"  items="${pageBean.data}">
@@ -38,6 +39,11 @@
 					<td>${p.name}</td>
 					<td>${p.detail}</td>
 					<td>${p.price}</td>
+					<td>
+						<c:forTokens var="each_img" items="${p.img }" delims=",">
+							<img src="${each_img }"  height="40px">
+						</c:forTokens>
+					</td>
 					<td>
 						<img  height="24px" width="24px" src="<c:url value="/resource/img/buy.png"/> ">
 					</td>

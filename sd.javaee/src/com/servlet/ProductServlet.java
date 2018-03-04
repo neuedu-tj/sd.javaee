@@ -1,14 +1,20 @@
 package com.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import org.apache.commons.io.FileUtils;
 
 import com.dao.ProductDao;
 import com.model.Product;
@@ -16,6 +22,7 @@ import com.model.Product;
 import web.util.PageBean;
 
 @WebServlet("/product")
+@MultipartConfig
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -35,6 +42,8 @@ public class ProductServlet extends HttpServlet {
 
 	}
 	
+	
+	///添加产品
 	protected void addProduct(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
@@ -44,10 +53,29 @@ public class ProductServlet extends HttpServlet {
 		String detail = request.getParameter("detail");
 		String price = request.getParameter("price");
 		
-		Product product  = new Product(name , detail , new BigDecimal(price));
+//		Part part = request.getPart("img");  //单文件 ✖ 
 		
+		Collection<Part> parts = request.getParts();
+		
+		StringBuilder pathToDb = new StringBuilder();
+		
+		for (Part part : parts) {
+			if("img".equalsIgnoreCase(part.getName())) {
+				String toWebApp = request.getRealPath("product/storage/img/")+part.getSubmittedFileName();
+				FileUtils.copyInputStreamToFile(part.getInputStream(), new File( toWebApp ));
+				
+				String path = "/sd.javaee/product/storage/img/"+part.getSubmittedFileName();
+				pathToDb.append(path).append(",");
+			}
+		}
+		String realPath = pathToDb.deleteCharAt(pathToDb.length()-1).toString();  //得到了真正入库的路径
+//		System.out.println("realPath : " + realPath);
+		
+		
+		Product product  = new Product(name , detail , new BigDecimal(price) , realPath);
+//		
 		dao.addProduct(product);
-		
+//		
 		getProductByPage( request , response );
 		
 	}

@@ -8,7 +8,7 @@ public class Product {
 	private String name;
 	private String detail;
 	private BigDecimal price;
-	private String img;
+	private String img;  //实际上 保存的是 图片的路径 ( 相对于服务器的路径  而非保存到服务器的绝对路径 )
 	
 	public Product() {
 		
