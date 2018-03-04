@@ -12,6 +12,19 @@ public class ProductDao {
 	
 	JDBCUtils utils = new JDBCUtils();
 	
+	
+	//用于保存 product
+	public void addProduct(Product product) {
+		
+		String sql = "insert into product ( name , detail , price ) values ( ? , ? , ? )";
+		Object[] params = { product.getName() , product.getDetail() , product.getPrice() };
+		
+		int row = utils.executeUpdate(sql, params);
+		
+		System.out.println(row + " 条 产品记录  添加成功 . ");
+	}
+	
+	
 	public List<Product> getProducts() {
 		
 		String sql = "select * from product";

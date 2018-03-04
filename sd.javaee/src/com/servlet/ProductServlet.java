@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,14 +21,35 @@ public class ProductServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		String method = request.getParameter("method");
-
+		
 		if ("getProduct".equalsIgnoreCase(method)) {
 			getProduct(request, response);
 		} else if("getProductByPage".equalsIgnoreCase(method)) {
 			getProductByPage(request , response);
+		} else if("addProduct".equalsIgnoreCase(method)) {
+			System.out.println("添加....................");
+			addProduct(request , response);
 		}
 
+	}
+	
+	protected void addProduct(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		ProductDao dao = new ProductDao();
+		
+		String name = request.getParameter("name");
+		String detail = request.getParameter("detail");
+		String price = request.getParameter("price");
+		
+		Product product  = new Product(name , detail , new BigDecimal(price));
+		
+		dao.addProduct(product);
+		
+		getProductByPage( request , response );
+		
 	}
 
 	
@@ -35,8 +57,12 @@ public class ProductServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		ProductDao dao = new ProductDao();
+		int curr = 1;
 		
-		int curr = Integer.parseInt(request.getParameter("curr"));
+		String curr_data = request.getParameter("curr");
+		if(curr_data!=null) {
+			curr = Integer.parseInt(curr_data);
+		}
 
 		PageBean pageBean = dao.getProductsByPage( curr,  3 );
 		

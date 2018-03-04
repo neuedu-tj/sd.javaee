@@ -14,6 +14,17 @@ public class Product {
 		
 	}
 	
+	
+	
+	public Product(String name, String detail, BigDecimal price) {
+		super();
+		this.name = name;
+		this.detail = detail;
+		this.price = price;
+	}
+
+
+
 	public Product(String name, String detail, BigDecimal price, String img) {
 		super();
 		this.name = name;

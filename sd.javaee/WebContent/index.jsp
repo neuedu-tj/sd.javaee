@@ -28,9 +28,13 @@
 	
 	<a href="<c:url value="/moment?method=get"/>">显示朋友圈</a><br><br>
 	
+	<hr>
+	
 	<a href="<c:url value='/product?method=getProduct' />">显示所有产品</a>
 	
 	<a href="<c:url value='/product?method=getProductByPage&curr=1' />">显示所有产品 ByPage</a>
+	
+	<a href="<c:url value='/product/addProduct.jsp' />">添加产品</a>
 
 	
 </body>
