@@ -12,16 +12,28 @@ public class ProductDao {
 	
 	JDBCUtils utils = new JDBCUtils();
 	
+	public Product getProductById(int pid) {
+		
+		String sql = "select * from product where pid =?";
+		Object[] params = { pid } ;
+		
+		List<Product> products= (List<Product>) utils.findByType(sql, Product.class , params);
+		
+		if(products!=null && products.size() > 0 ) {
+			return products.get(0);
+		}
+		
+		return null;
+	}
 	
-	//用于保存 product
+	
+	
 	public void addProduct(Product product) {
 		
 		String sql = "insert into product ( name , detail , price , img ) values ( ? , ? , ? , ? )";
 		Object[] params = { product.getName() , product.getDetail() , product.getPrice() , product.getImg() };
 		
 		int row = utils.executeUpdate(sql, params);
-		
-		System.out.println(row + " 条 产品记录  添加成功 . ");
 	}
 	
 	
@@ -51,7 +63,6 @@ public class ProductDao {
 				page.setTotalRows(rs.getInt(1));
 			}
 		} catch (Exception e) {
-			System.err.println("获取总记录数时  出现异常.");
 			e.printStackTrace();
 		}
 		

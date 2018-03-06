@@ -13,7 +13,7 @@ public class TestMoments {
 	
 	@Test
 	public void testAddMoments() {
-		Moments m = new Moments("µÚ8ÌõÅóÓÑÈ¦......" );
+		Moments m = new Moments("ç¬¬8æ¡æœ‹å‹åœˆ......" );
 		
 		MomentsDao dao = new MomentsDao();
 		dao.saveMoments(m);

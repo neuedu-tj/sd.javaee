@@ -11,6 +11,15 @@ import web.util.PageBean;
 
 public class TestProduct {
 	
+	
+	
+	@Test
+	public void testGetProductById() {
+		ProductDao dao = new ProductDao();
+		Product p = dao.getProductById(3);
+		System.out.println(" p£º"+p);
+	}
+	
 	@Test
 	public void testGetProducts() {
 		
