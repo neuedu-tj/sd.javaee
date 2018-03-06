@@ -36,10 +36,14 @@ public class Item {
 		return "Item [product=" + product + ", amount=" + amount + "]";
 	}
 	
-	
-	
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		Item a = this;
+		Item b = (Item)obj;
+		
+		return a.getProduct().getPid() == b.getProduct().getPid();
+	}
+
 	
 	
 

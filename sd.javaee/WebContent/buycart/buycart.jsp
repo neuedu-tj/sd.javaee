@@ -15,13 +15,16 @@
 	<h3>BuyCart</h3>
 	<hr>
 	
-	<table>
+	<p>总价 : ${buycart.totalPrice}</p>
+	
+	<table border="1" > 
 		<tr>
 			<td>Name</td>
 			<td>Amount</td>
 			<td>ItemPrice</td>
 			<td>update/remove</td>
 		</tr>
+
 		
 		<c:forEach var="item" items="${buycart.items }">
 			<tr>
