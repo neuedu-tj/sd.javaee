@@ -9,6 +9,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+
+
+<style>
+	
+	* {
+		text-decoration : none
+	
+	}
+
+</style>
+
 </head>
 <body>
 	
@@ -29,8 +40,10 @@
 		<c:forEach var="item" items="${buycart.items }">
 			<tr>
 				<td>${item.product.name }</td>
-				<td>
-					<input value="${item.amount }"/>
+				<td width="150px">
+					<a href="<c:url value="buycart?method=addProduct&pid=${item.product.pid }&amount=-1"/>" >-</a>
+					<input value="${item.amount }"   size=10 />
+					<a href="<c:url value="buycart?method=addProduct&pid=${item.product.pid }&amount=1"/>">+</a>
 				</td>
 				<td>${item.amount * item.product.price }</td>
 				<td>

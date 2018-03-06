@@ -32,7 +32,7 @@
 					<td>${p.detail}</td>
 					<td>${p.price}</td>
 					<td>
-						<a href="<c:url value="buycart?pid=${p.pid }"/>"  >
+						<a href="<c:url value="buycart?method=addProduct&pid=${p.pid }"/>"  >
 							<img  height="24px" width="24px" src="<c:url value="/resource/img/buy.png"/> ">
 						</a>
 					</td>

@@ -19,14 +19,36 @@ import web.util.Item;
 public class BuyCartServlet extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String method = request.getParameter("method");
+		if("addProduct".equalsIgnoreCase(method)) {
+			addProduct(request , response);
+		} else if("updateAmount".equalsIgnoreCase(method)) {
+			
+		}
+		
+	}
 	
+//	protected void updateAmount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		
+//		HttpSession session = request.getSession();
+//		BuyCart buycart = (BuyCart) session.getAttribute("buycart");
+//		
+//	}
+	
+	protected void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProductDao dao = new ProductDao();
-	
+		
 		int pid = Integer.parseInt(request.getParameter("pid"));
 		Product p = dao.getProductById(pid);
 		
-	
-		Item item = new Item( p  , 1);
+		int amount = 1;
+		String temp = request.getParameter("amount");
+		if(temp!=null && temp!= "") {
+			amount = Integer.parseInt(request.getParameter("amount"));
+		}
+		
+		Item item = new Item( p  , amount );
 		
 	
 		HttpSession session = request.getSession();
@@ -44,8 +66,9 @@ public class BuyCartServlet extends HttpServlet {
 		System.out.println("buycart : " + buycart);
 
 		toView(request, response);
-		
 	}
+	
+	
 	
 	protected void toView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/buycart/buycart.jsp").forward(request, response);
