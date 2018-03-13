@@ -19,7 +19,7 @@ public class TestUsers {
 		System.out.println(curr);
 //		
 //		boolean flag = dao.checkUsers(u);
-//		System.out.println("�д��û�ô ? " + flag);
+//		System.out.println("有此用户么 ? " + flag);
 	}
 
 }

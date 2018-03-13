@@ -15,12 +15,12 @@ public class MomentsDao {
 		
 		JDBCUtils util = new JDBCUtils();
 		int row = util.executeUpdate(sql, params);
-		System.out.println(row + " Ìõ ÅóÓÑÈ¦ Ìí¼Ó³É¹¦ . ");
+		System.out.println(row + " æ¡ æœ‹å‹åœˆ æ·»åŠ æˆåŠŸ . ");
 		
 	}
 	
 	/**
-	 * ÏÔÊ¾ÅóÓÑÈ¦ËùÓĞÄÚÈİ
+	 * æ˜¾ç¤ºæœ‹å‹åœˆæ‰€æœ‰å†…å®¹
 	 * @return
 	 */
 	public List<Moments> getMoments() {

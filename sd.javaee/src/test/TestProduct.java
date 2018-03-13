@@ -17,7 +17,7 @@ public class TestProduct {
 	public void testGetProductById() {
 		ProductDao dao = new ProductDao();
 		Product p = dao.getProductById(3);
-		System.out.println(" p£º"+p);
+		System.out.println(" pï¼š"+p);
 	}
 	
 	@Test

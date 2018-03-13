@@ -41,9 +41,9 @@ public class MomentServlet extends HttpServlet {
 
 		String mcontent = request.getParameter("mcontent");
 
-		Collection<Part> imgs = request.getParts(); // »áµÃµ½±¾´ÎÌá½»µÄ±íµ¥ÖĞ ËùÓĞ¿Ø¼şµÄÄÚÈİ , °üÀ¨ÎÄ±¾ , checkbox , file ......
+		Collection<Part> imgs = request.getParts(); // ä¼šå¾—åˆ°æœ¬æ¬¡æäº¤çš„è¡¨å•ä¸­ æ‰€æœ‰æ§ä»¶çš„å†…å®¹ , åŒ…æ‹¬æ–‡æœ¬ , checkbox , file ......
 
-		// ÓÃÓÚÆ´½Ó Â·¾¶
+		// ç”¨äºæ‹¼æ¥ è·¯å¾„
 		StringBuilder urls = new StringBuilder("");
 
 		for (Part part : imgs) {
@@ -51,15 +51,15 @@ public class MomentServlet extends HttpServlet {
 
 				String path = request.getRealPath("storage") + "/" + part.getSubmittedFileName(); // c:/dev/.....tomcat/webapps/sd.javaee/storage/xxxx.jpg
 
-				FileUtils.copyInputStreamToFile(part.getInputStream(), new File(path)); // ¿½±´Ã¿Ò»·İÎÄ¼ş µ½·şÎñÆ÷
+				FileUtils.copyInputStreamToFile(part.getInputStream(), new File(path)); // æ‹·è´æ¯ä¸€ä»½æ–‡ä»¶ åˆ°æœåŠ¡å™¨
 
-				String url = "/sd.javaee/storage/" + part.getSubmittedFileName(); // »ñÈ¡Ã¿Ò»·İÎÄ¼şµÄÏà¶ÔÂ·¾¶ (´ËÂ·¾¶ÓÃÓÚ±£´æµ½ db ) :
+				String url = "/sd.javaee/storage/" + part.getSubmittedFileName(); // è·å–æ¯ä¸€ä»½æ–‡ä»¶çš„ç›¸å¯¹è·¯å¾„ (æ­¤è·¯å¾„ç”¨äºä¿å­˜åˆ° db ) :
 																					// sd.javaee/storage/xxx.jpg
 				urls.append(url).append(";");
 			}
 		}
 
-		urls.deleteCharAt(urls.length() - 1); // É¾³ı×îºóÒ»¸ö¶àÓàµÄ·ÖºÅ " ; "
+		urls.deleteCharAt(urls.length() - 1); // åˆ é™¤æœ€åä¸€ä¸ªå¤šä½™çš„åˆ†å· " ; "
 
 		Moments m = new Moments(mcontent, urls.toString());
 
