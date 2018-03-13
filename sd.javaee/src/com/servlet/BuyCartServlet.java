@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,9 +26,41 @@ public class BuyCartServlet extends HttpServlet {
 			addProduct(request , response);
 		} else if("updateAmount".equalsIgnoreCase(method)) {
 			
+		} else if("removeItem".equalsIgnoreCase(method)) {
+			removeItem( request , response );
 		}
 		
 	}
+	
+	
+	protected void removeItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		BuyCart cart = null ; 
+		if(session.getAttribute("buycart")!=null) {
+			cart = (BuyCart)session.getAttribute("buycart");
+			
+			int pid = Integer.parseInt(request.getParameter("pid"));
+			
+			Iterator<Item> it = cart.getItems().iterator();
+			
+			while(it.hasNext()) {
+				 Item item = (Item )it.next();
+				
+				if(pid == item.getProduct().getPid()) {
+					it.remove();
+				}
+			}
+			
+//			session.setAttribute("buycart", new BuyCart());   //测试监听器使用 
+			
+		} else {
+			System.out.println("-------  购物车没有内容 --------");
+		}
+		
+		toView(request , response);
+		
+	}
+	
 	
 //	protected void updateAmount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		

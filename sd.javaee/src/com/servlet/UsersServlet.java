@@ -91,7 +91,7 @@ public class UsersServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-		
+
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("/sd.javaee/login.html");

@@ -47,7 +47,7 @@
 				</td>
 				<td>${item.amount * item.product.price }</td>
 				<td>
-					<a href='#'>remove</a>
+					<a href=" <c:url value="buycart?method=removeItem&pid=${item.product.pid }" />">remove</a>
 				</td>
 		</tr>
 		</c:forEach>
